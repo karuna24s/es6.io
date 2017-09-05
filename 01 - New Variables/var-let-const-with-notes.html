@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>let and const</title>
+</head>
+<body>
+  <script>
+  // var scoping refresher:
+  // 3 ways to declare variables:
+    //  1. var
+    //  2. let
+    //  3. const
+  // Var:
+    // we can update/reassign var variables.
+    // how are var variables scoped!
+    // Scoping mean where are these variables available to the developer.
+    // var variables are function scoped which means they are only available inside
+    // the function, or if they are not created inside the function at all (they are globally scoped)
+    // they are available in the window.
+
+    // var width = 100;
+    // console.log(width);
+    // width = 200;
+    // console.log(width);
+
+    // there is no error since the width is availabe inside of the function:
+    function setWidth() {
+      var width = 100;
+      console.log(width);
+    }
+    setWidth();
+    // if i add console.log(width) after I set the width will it work?
+    // console.log(width);
+    // No in the the console, I see an error: Uncaught ReferenceError: width is not defined.
+    // Because width is only scoped to that function. It is a local variable to this function,
+    // and it is not available outsid the function.
+
+    // However this will work if you globally declare the variable outside the function and assign
+    // to a number inside the function like so:
+    // var width
+    // function setWidth() {
+    //   width = 100;
+    //   console.log(width);
+    // }
+    // setWidth();
+    // console.log(width);
+    // but it is frowned upon to do this.
+
+    // Another example:
+    // var age = 100;
+    // if(age > 12) {
+    //   var dogYears = age * 7;
+    //   console.log(`You are ${dogYears} dog years old.`)
+    // }
+    // it works but the one thing that you will notice: Since var variable are function scoped
+    // there is no function in this example so it scoped the entire window (so when you type in
+    // type dogYears in the console you will see 700).
+
+    // Let and const are scoped to the block instead of the function.
+    // Any time you see an open and closing curly bracket that is a block.
+
+    var age = 100;
+    if(age > 12) {
+      let dogYears = age * 7;
+      // got an error: VM25215:1 Uncaught ReferenceError: dogYears is not defined
+      // because I declared it as a let variable and it is only declared inside a
+      // a block scope not a function scope and that temporary variale has not leaked out
+      // you will receive the same error if you add const as well.
+      // let and const variables are block scoped
+      console.log(`You are ${dogYears} dog years old.`)
+    }
+    let height = 200;
+    const key = 'abc123';
+  </script>
+</body>
+</html>
